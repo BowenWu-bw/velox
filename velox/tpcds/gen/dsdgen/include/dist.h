@@ -125,12 +125,12 @@ typedef HUGE_TYPE ds_key_t;
 struct DSDGenContext;
 
 typedef struct DIST_T {
-  int* type_vector;
-  int** weight_sets;
-  int* maximums;
-  int** value_sets;
-  char* strings;
-  char* names;
+  std::vector<int> type_vector;
+  std::vector<std::vector<int>> weight_sets;
+  std::vector<int> maximums;
+  std::vector<std::vector<int>> value_sets;
+  std::string strings;
+  std::string names;
   int size;
 } dist_t;
 
@@ -153,7 +153,7 @@ typedef struct D_IDX_T {
   int w_width;
   int v_width;
   int flags;
-  dist_t* dist;
+  dist_t dist;
 } d_idx_t;
 
 typedef struct DISTINDEX_T {
@@ -182,7 +182,7 @@ typedef struct OPTION_T {
       const char* szPName,
       const char* optarg,
       DSDGenContext& dsdGenContext);
-  const char* dflt;
+  std::string dflt;
 } option_t;
 
 typedef struct DS_PRICING_T {
@@ -865,7 +865,7 @@ struct DSDGenContext {
        ".vld"},
       {"RNGSEED", OPT_INT | OPT_ADV, 24, "set RNG seed", NULL, "19620718"}};
 
-  char* params[23 + 2];
+  std::vector<std::string> params;
 
   struct W_DATE_TBL g_w_date;
 

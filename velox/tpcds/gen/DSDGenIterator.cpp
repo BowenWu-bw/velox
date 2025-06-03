@@ -34,6 +34,7 @@ void initializeDSDgen(
     DSDGenContext& dsdGenContext) {
   dsdGenContext.Reset();
   resetCountCount();
+  dsdGenContext.params.resize(23 + 2);
 
   std::string scaleStr = std::to_string(scale);
   set_str("SCALE", scaleStr.c_str(), dsdGenContext);
